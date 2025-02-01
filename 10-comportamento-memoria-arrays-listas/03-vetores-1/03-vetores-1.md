@@ -32,4 +32,4 @@ for (int i=0; i<n; i++) {
 }
 ```
 
-- Programa exemplos na pasta "src".
+- Programa exemplo na pasta "src".
