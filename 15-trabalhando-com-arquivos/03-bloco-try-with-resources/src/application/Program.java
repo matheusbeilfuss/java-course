@@ -8,7 +8,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		String path = "/home/bridge/in.txt";
+		String path = "/home/user/in.txt";
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 			
