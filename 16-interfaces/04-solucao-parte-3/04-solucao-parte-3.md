@@ -10,3 +10,4 @@
 - A interface vai definir um contrato: um serviço de imposto precisa ter o método "tax", que recebe uma quantia e retorna o imposto relativo a essa quantia.
 - Assim, caso seja necessário trocar a classe "TaxService", mexe-se num lugar só.
 - Código na pasta `src`.
+- Solução pelo professor: https://github.com/acenelio/interfaces1-java
