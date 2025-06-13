@@ -1,4 +1,4 @@
-# Predicate
+# Predicate (exemplo com removeIf)
 
 - https://docs.oracle.com/javase/10/docs/api/java/util/function/Predicate.html
 - Sintaxe:
