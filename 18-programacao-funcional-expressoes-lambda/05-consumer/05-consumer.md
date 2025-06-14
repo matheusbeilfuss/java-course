@@ -22,4 +22,4 @@ public interface Consumer<T> {
   - Reference method com método não estático
   - Expressão lambda declarada
   - Expressão lambda inline
-- Repositório do professor com cada versão (separada por commits):
+- Repositório do professor com cada versão (separada por commits): https://github.com/acenelio/lambda3-java
