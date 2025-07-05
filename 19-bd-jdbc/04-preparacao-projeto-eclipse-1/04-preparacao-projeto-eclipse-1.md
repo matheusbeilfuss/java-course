@@ -10,4 +10,4 @@
   - Criar um novo Java Project;
   - Na pasta raiz do projeto, criar um arquivo "db.properties" contendo os dados de conexão;
   - No pacote "db", criar uma exceção personalizada DbException;
-  - No pacote "db", criar uma classe DB com métodos estáticos auxiliares
+  - No pacote "db", criar uma classe DB com métodos estáticos auxiliares.
