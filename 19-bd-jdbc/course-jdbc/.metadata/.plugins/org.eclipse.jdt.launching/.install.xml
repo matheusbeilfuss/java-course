@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dirs>
+    <entry loc="/home/bridge/.sdkman/candidates/java/8.0.412-zulu" stamp="1711623516000"/>
+    <entry loc="/home/bridge/.sdkman/candidates/java/17.0.7-zulu" stamp="1681132043000"/>
+    <entry loc="/usr/lib/jvm/java-21-openjdk-amd64" stamp="1753728539072"/>
+    <entry loc="/usr/lib/jvm/java-11-openjdk-amd64" stamp="1753728537292"/>
+    <entry loc="/home/bridge/.sdkman/candidates/java/6.0.119-zulu" stamp="1540647486000"/>
+    <entry loc="/home/bridge/.sdkman/candidates/java/21.0.6-tem" stamp="1737502704000"/>
+</dirs>

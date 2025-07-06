@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+/home/bridge/Documentos/GitHub/java-course/19-bd-jdbc/course-jdbc/.metadata/.plugins/org.eclipse.jdt.core
+1956855528.index
+900586112.index
+1865797976.index
+806248265.index
