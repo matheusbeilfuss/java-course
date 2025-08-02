@@ -54,18 +54,10 @@ public class SellerDaoJDBC implements SellerDao {
 			if (rs.next()) { // Testa se veio algum resultado, pois o resultado sempre fica na posição 1
 				
 				// Instanciando departamento e settando seus valores
-				Department dep = new Department();
-				dep.setId(rs.getInt("DepartmentId"));
-				dep.setName(rs.getString("DepName"));
+				Department dep = instantiateDepartment(rs);
 				
 				// Instanciando vendedor e settando seus valores
-				Seller obj = new Seller();
-				obj.setId(rs.getInt("Id"));
-				obj.setName(rs.getString("Name"));
-				obj.setEmail(rs.getString("email"));
-				obj.setBaseSalary(rs.getDouble("BaseSalary"));
-				obj.setBirthDate(rs.getDate("BirthDate"));
-				obj.setDepartment(dep);
+				Seller obj = instantiateSeller(rs, dep);
 				
 				return obj;
 			}
@@ -76,6 +68,24 @@ public class SellerDaoJDBC implements SellerDao {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
+	}
+
+	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
+		Seller obj = new Seller();
+		obj.setId(rs.getInt("Id"));
+		obj.setName(rs.getString("Name"));
+		obj.setEmail(rs.getString("email"));
+		obj.setBaseSalary(rs.getDouble("BaseSalary"));
+		obj.setBirthDate(rs.getDate("BirthDate"));
+		obj.setDepartment(dep);
+		return obj;
+	}
+
+	private Department instantiateDepartment(ResultSet rs) throws SQLException { // propaga a exceção para ser tratada no método anterior
+		Department dep = new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
 	}
 
 	@Override
