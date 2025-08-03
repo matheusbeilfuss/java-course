@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -50,7 +53,9 @@ public class SellerDaoJDBC implements SellerDao {
 					+ "WHERE seller.Id = ?");
 			
 			st.setInt(1, id);
+			
 			rs = st.executeQuery();
+			
 			if (rs.next()) { // Testa se veio algum resultado, pois o resultado sempre fica na posição 1
 				
 				// Instanciando departamento e settando seus valores
@@ -92,5 +97,48 @@ public class SellerDaoJDBC implements SellerDao {
 	public List<Seller> findAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Seller> findByDepartment(Department department) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"SELECT seller.*,department.Name as DepName "
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id "
+					+ "WHERE DepartmentId = ? "
+					+ "ORDER BY Name");
+			
+			st.setInt(1, department.getId());
+			
+			rs = st.executeQuery();
+			
+			List<Seller> list = new ArrayList<>();
+			Map<Integer, Department> map = new HashMap<>(); //  vai conter os departamentos instanciados
+			
+			while (rs.next()) { // while porque pode haver mais de um resultado
+				
+				Department dep = map.get(rs.getInt("DepartmentId")); // testa se o departamento já existe (retorna nulo se não existir)
+				
+				if (dep == null) {
+					// Instanciando departamento e settando seus valores
+					dep = instantiateDepartment(rs);
+					map.put(rs.getInt("DepartmentId"), dep); // insere departamento no map
+				}
+								
+				// Instanciando vendedor e settando seus valores
+				Seller obj = instantiateSeller(rs, dep);
+				
+				list.add(obj);
+			}
+			return list;
+		} catch (SQLException e) {
+			throw  new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 }
