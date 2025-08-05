@@ -57,10 +57,30 @@
 
 4. Incluindo JPA para persistir os objetos em banco de dados
 
-Passos:
-
-1. Crie uma base de dados MySQL vazia
-
-- Instale o Xampp no seu computador
-- Inicie o Apache e o MySQL
-- No PhpMyAdmin, crie uma base de dados chamada "aulajpa"
+- Passos:
+  - Crie uma base de dados MySQL vazia
+    - Instale o Xampp no seu computador
+    - Inicie o Apache e o MySQL
+    - No PhpMyAdmin, crie uma base de dados chamada "aulajpa"
+  - Crie um novo projeto Maven (gerenciador de dependências e build do Java)
+    - File -> New -> Other -> Maven Project
+    - Create Simple Project -> Next
+    - Group Id: com.educandoweb
+      - Normalmente, o nome da empresa
+    - Artifact Id: aulajpamaven
+      - Normalmente, o nome do projeto
+    - Finish
+  - Copie as classes Programa e Pessoa para o novo projeto
+  - Atualize o Maven do projeto para versão atual LTS Java
+    - Edite o arquivo pom.xml
+    - Inclua as tags <properties> com a versão do Java desejada
+    - Salve o projeto
+    - Botão direito no projeto -> Maven -> Update Project (Force update)
+  - Inclua as dependências Maven a serem baixadas
+    - Ao baixar alguma dependência, é preciso saber o nome dela e a versão
+    - Normalmente pesquisando na internet, como "hibernate maven"
+  - Configure o JPA no seu projeto por meio do arquivo persistence.xml
+    - Crie uma pasta "META-INF" a partir da pasta "resources"
+    - Dentro da pasta META-INF crie um arquivo "persistence.xml"
+    - Adicione o conteúdo nesse arquivo (conteúdo no material de apoio)
+      - Define as configurações do JPA
