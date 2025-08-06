@@ -33,6 +33,8 @@
       por ele monitoradas em um mesmo contexto de persistência.
       - Instanciar um objeto EntityManager, a grosso modo, significa conectar com o BD. Mas, ele é muito mais que isso;
       - O EntityManager monitora as entidades. Objetos monitorados pelo EntityManager estão em um mesmo contexto de persistência.
+        - O JPA só consegue remover uma entidade que esteja monitorada;
+        - Um **objeto monitorado** ou é um objeto que se acabou de inserir ou é um objeto que se buscou do BD e ainda não fechou o EntityManager.
     - Escopo: tipicamente mantém-se uma instância única de EntityManager para cada thread do sistema (no caso
       de aplicações web, para cada requisição ao sistema).
       - Ou seja, quando o usuário faz uma requisição web, a aplicação vai instanciar um único EntityManager para trabalhar com todos os dados daquela requisição.
@@ -58,6 +60,7 @@
 4. Incluindo JPA para persistir os objetos em banco de dados
 
 - Passos:
+
   - Crie uma base de dados MySQL vazia
     - Instale o Xampp no seu computador
     - Inicie o Apache e o MySQL
@@ -84,3 +87,12 @@
     - Dentro da pasta META-INF crie um arquivo "persistence.xml"
     - Adicione o conteúdo nesse arquivo (conteúdo no material de apoio)
       - Define as configurações do JPA
+  - Inclua os mapeamentos na classe de domínio
+    - Mapeamento define qual classe corresponde a qual tabela, dentro da classe quais atributos correspondem aos campos da tabela e os relacionamentos
+    - Nos imports, pode-se manter o javax.persistence porque, dessa forma, a aplicação busca automaticamente a implementação do Hibernate. É uma boa prática, também, para garantir que o programa está atendendo à especificação da JPA.
+    - Por padrão, o JPA cria uma tabela com o mesmo nome da classe e, nessa tabela, cria os atributos com os mesmos nomes dos atributos da classe. Se quiser nomes diferentes, é preciso explicitar isso (com a anotação "@Column", por exemplo)
+  - Na classe "Programa" faça os testes (veja videoaula)
+    - Para isso, vai ser necessário usar o EntityManagerFactory e o EntityManager
+
+- Nesse curso, vamos usar o Spring Data, um módulo do framework Spring.
+  - Ele já faz muita coisa: automatiza as configurações, instancia os EntityManagers sem vermos, gerencia as transações e inclui uma camada superior "repository", que vai fornecer operações baseadas nas do JPA, mas em um nível mais elevado, escondendo mais detalhes e deixando operações com BD ainda mais fácil.
