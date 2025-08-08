@@ -36,7 +36,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "client_id") // chave estrangeira que vai estar no BD
 	private User client;
 
-	@OneToMany(mappedBy = "id.order")
+	@OneToMany(mappedBy = "id.order") // id.order porque o OrderItem tem o atributo "id" (do tipo OrderItemPK) que, por sua vez, tem o order
 	private Set<OrderItem> items = new HashSet<>();
 
 	public Order() {
