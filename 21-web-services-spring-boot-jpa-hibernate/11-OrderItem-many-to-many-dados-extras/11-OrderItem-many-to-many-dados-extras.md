@@ -10,7 +10,12 @@
 - Checklist:
   - OrderItemPK
     - Classe auxiliar para ser a chave primária do OrderItem. Essa classe vai ter uma referência para pedido e produto.
+    - Sempre que criar uma classe auxiliar que é um Id composto, é preciso instanciar ela.
   - OrderItem
     - No mapeamento do id da classe, utilizar a annotation "@EmbeddedId".
   - Order one-to-many association
+    - Na classe Order, há uma associação com vários itens. Então, na classe Order, quer-se ter uma operação "getItems" para retornar os OrderItems associados a esse pedido.
+    - Fica "@OneToMany(mappedBy = "id.order") porque no OrderItem há o id, e é o id que tem o pedido.
   - Seed
+- Foi necessário corrigir o problema da referência cíclica, porque Order tem muitos OrderItem e cada OrderItem tem um Order.
+  - A correção foi adicionar a annotation "@JsonIgnore" no método "getOrder()" de OrderItem, porque embora o OrderItem não tenha uma associação direta com Order, isso acontece com o OrderItemPK. E, no Java EE, essa associação é feita com o método get.
