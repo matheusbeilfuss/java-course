@@ -1,0 +1,25 @@
+# Deploy do sistema no Heroku
+
+- Vamos fazer o deploy da aplicação no Heroku.
+- Primeiro, vamos ter que associar o projeto local com o Heroku, pois vamos usar um deploy baseado no git: vamos fazer um git push para o Heroku que, automaticamente, recebe o push, faz o build da aplicação e implanta o sistema.
+- Primeiro, vamos associar o projeto com o Heroku
+  - Heroku app dashboard -> Deploy
+    - heroku git:remote -a myapp (executa na pasta do projeto)
+    - git remote -v (mostra os repositórios que vão receber comandos push)
+- Depois, definimos as variáveis de configuração da aplicação no Heroku.
+  - Setup Heroku app Config Vars
+    - DATABASE_URL
+    - Se estiver usando autenticação com JWT, vai ser necessário definir também as variáveis abaixo.
+      - JWT_EXPIRATION
+      - JWT_SECRET
+- Create: application-prod.properties.
+  - Arquivo de configuração para produção.
+  - Com as configurações do PDF para o arquivo application-prod.properties, as informações são obtidas das variáveis de configurações do Heroku.
+  - Além disso, nessas configurações o JPA não faz nada e os logs de SQL não são exibidos.
+- Update application.properties: spring.profiles.active=prod
+- Create files: system.properties
+  - Esse arquivo serve para avisar ao Heroku que estamos utilizando a versão atual LTS do Java, com o conteúdo `java.runtime.version=17`.
+- Send to Heroku:
+  - git add .
+  - git commit -m "Deploy app to Heroku"
+  - git push heroku main
